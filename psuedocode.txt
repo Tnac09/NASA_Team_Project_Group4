@@ -1,0 +1,137 @@
+1. This is the setup for the data and start of the program:
+
+ First, got to create a List of all the 15 survival items and call it stringItem in the braces- 
+{ "Box of matches", "Food concentrate", "50 feet of nylon rope", "Parachute silk",
+  "Portable heating unit", "Two .45 caliber pistols", "One case of dehydrated milk", "Two 100 lb. tanks of oxygen",
+  "Stellar map", "Self-inflating life raft", "Magnetic compass", "20 liters of water", "Signal flares",
+  "First aid kit with injection needle", "Solar-powered FM receiver-transmitter"};
+Second, got to create an empty list for user input ranking and called it intRank. 
+Third, got to create a list for NASA ranking called nasaRanking from the following braces- { 15, 4, 6, 8, 13, 11, 12, 1, 3, 9, 14, 2, 10, 7, 5 } that corresponds to the order of the stringItem list.
+Fourth, create a list called nasaReasoning and put the official NASA explanation in it from the following braces- 
+{"Virtually worthless – no oxygen to sustain combustion.",
+"Efficient means of supplying energy requirements.",
+"Useful in scaling cliffs and tying injured together.",
+"Protection from the sun’s rays.",
+"Not needed unless on the dark side.",
+"Possible means of self-propulsion.",
+"Bulky duplication of food concentrate.",
+"Most pressing survival need – oxygen supply.",
+"Primary means of navigation – star patterns visible.",
+"CO2 bottle can be used for propulsion.",
+"Worthless – the Moon’s magnetic field isn’t polarized.",
+"Needed to replace fluid loss on light side.",
+"For distress signaling when mother ship is sighted.",
+"For treating injuries and medical needs.",
+"For short-range communication with mother ship." } 
+Fifth, create a list called intDifferences that will hold the score difference for the end result of the program. 
+
+2. The setup a control variable: 
+create a bool called intWhileLoopBool = False
+create an integer called intUserInput = 0 
+create another integer called intItemRank = 0
+
+3. Create a introduction or greeting for the program:
+Show the following text on the terminal "Hello welcome to the NASA moon survival test. Please rank the given items in order of priority."
+
+4. Create a main ranking process or a ranking do-while loop:
+This is the start of the loop that runs until all 15 items have a unique rank from 1 to 15.   
+DO
+  	A. Call a method or a function named WriteArray and pass it two pieces of information called stringItem and intRank.
+	
+	B. Check for duplicates or zeros in all ranks from the following function named DistinctRankCheck from the intRank or user input.
+	if DistinctRankCheck is false and still needs user input show the following information:
+		"Which entry do you want to change? (Numbered 1-15)"
+		Read user input from the intUserInput and continue program with pressing the enter button
+		Set intUserInput = Convert.ToInt32(intUserInput) - 1 or adjust a user input number to match how computer arrays are structured.
+		
+		if the intUserInput is between 0 and 14:
+			Show what you want the user to do next with the item, which is "Enter what rank you want for: " + stringItem[intUserInput]
+			Read inItemRank or in simple terms store the rank the user enters for that specified item.
+ 
+			if the inItemRank or the rank choice is valid by being between 1 and 15 then procced to the next step. 
+				Next it takes the value from intItemRank and store it into a specific slot within an array called intRank.
+			
+			else 
+				if the intItemRank the user entered was not valid then show a error message "Invalid input >:(" to the user.
+				Play a high pitch alert sound to immediately alert the user of the error.
+			ENDIF  
+		else
+			if the inUserInput the user entered was not valid then show a error message "Invalid input :(" to the user.
+			Play a low pitch alert sound to immediately alert the user of the error.  
+		ENDIF
+
+		Clear the screen by using Console.Clear();
+
+	else
+		 
+		Set intWhileLoopBool = TRUE, which means the program has successfully checked and validated all the ranks and items, so now it can stop looping and move on.
+		Clear the screen by using Console.Clear();
+
+		Show the results after ranking is complete
+		Call the function named WriteArrayWithScore that will format and display the final comparison.
+		the variables (stringItem, intRank, nasaRanking, intDifference) will be passed into the function to be shown on the terminal.
+	ENDIF
+
+While intWhileLoopBool IS FALSE the loop will continue to run until the ranking process is successful completed or until intWhileLoopBool is TRUE once it is TRUE the program exist the loop.
+
+END of C# PROGRAM
+
+
+Next, are the helper functions for this program: 
+
+Create a function called ItemRank that takes the array of user ranks as input.
+Thus, it immediately creates an empty array inside the function.
+It shows a line that says "1: Box of matches" followed by the value at the second position of the empty array, which is zero.
+It returns the string representation of the input array or simple Return rank.ToString(). 
+FUNCTION ItemRank(rank : ARRAY OF INTEGER) : STRING
+
+END FUNCTION 
+
+Create a function called WriteArray that takes two lists of an array of items as well as ranks given and displays them line by line. Next, it runs through the list 15 times for items 1 through 15. Thus, each time it display the item number, the rank given, and the item name or "i + 1 + ": " + rank[i] + ". " + array[i]."
+
+END FUNCTION
+
+Create a function called WriteArray that takes four list of data, which are the item names, the user's ranks, the official NASA ranks, and an empty list ready to store the differences. It goes through all 15 items one by one. For each item it finds the absolute difference between the user's rank as well as the NASA rank and saves the score. Next, it displays the item number, the NASA rank, and the calculated Difference Score in the following code "Console.WriteLine(i + 1 + ": " + rank[i] + ". " + array[i] + "\tNASA score: " + nasaRank[i] + "\tDifference: " + difference[i]);."
+
+END FUNCTION
+
+Create a function called DistinctRankCheck, which is designed to confirm two things about a list from user assigned rank of NASA 15 items. 
+	
+	Have the function check to assume success or TRUE. Declare boolCheck : BOOLEAN = TRUE
+
+	
+	If the boolCheck == TRUE or if the boolCheck is true then:
+
+		
+		Start the outer loop to look at the rank of each item (i) in the following code- for (int i = 0; i < 15; i++) DO:
+			
+			Start the inner loop by comparing item's or (i) rank against every other item (n) in the following code-  for (int n = 0; n < 15; n++) DO:
+				
+				Make sure we are not comparing an item to itself in the following code-  if (i != n) THEN:
+					
+					Check for invalidity or duplication.
+					
+					If the ranks are the same or the current rank is less than or equal to zero in the following code- if (rank[i] == rank[n] || rank[i] <= 0) THEN:
+					
+					If a duplicate or invalid rank is found set the flag to FALSE in the following code- boolCheck = false;
+ 
+					END IF
+				END IF
+
+			END the inner loop (n)
+
+		END the outer loop (i)
+	
+	END IF
+
+Return the final result TRUE if all ranks are unique and positive, otherwise FALSE from the following code- return boolCheck;
+
+END of FUNCTION 
+
+The end of helper functions. 
+
+
+Here is the pseudocode for the C# program on our NASA project, broken down into the main process and the helper functions.
+
+Pseudocode: NASA Moon Survival Test Program
+
